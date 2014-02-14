@@ -25,7 +25,7 @@ up brew gem opam npm
 
 ```sh
 mkdir -p ~/bin
-curl https://raw.github.com/bfontaine/up/master/bin/up > ~/bin/up
+curl -s https://raw.github.com/bfontaine/up/master/bin/up > ~/bin/up
 chmod u+x ~/bin/up
 ```
 

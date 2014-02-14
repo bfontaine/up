@@ -50,17 +50,17 @@ __up() {
     }
 
     init_commands() {
-        curl -q "$CMDS_URL" > $COMMANDS
+        curl -s "$CMDS_URL" > $COMMANDS
     }
 
     ###
+
+    [ ! -f "$COMMANDS" ] && init_commands
 
     if [ $# -eq 0 ]; then
         print_usage
         return 0
     fi
-
-    [ ! -f "$COMMANDS" ] && init_commands
 
     case "$1" in
         -v|--version|-version)
