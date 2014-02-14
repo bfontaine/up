@@ -1,0 +1,3 @@
+brew: brew update && brew upgrade
+gem: gem update
+opam: opam update && opam upgrade
