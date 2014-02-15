@@ -35,12 +35,19 @@ __up() {
         eval `grep "^$1:" $COMMANDS | cut -d: -f2`
     }
 
+    exec_all() {
+        while read l; do
+            eval `echo "$l" | cut -d: -f2`
+        done < $COMMANDS
+    }
+
     print_usage() {
         echo "Usage:
-    up --list                # list all commands
-    up --add <alias <cmd>    # add a command
-    up --rm <alias> <cmd>    # remove a command
     up <alias> [<alias> ...] # execute a set of commands
+    up --list                # list all commands
+    up --all                 # execute all commands sets
+    up --add <alias> <cmd>   # add a command
+    up --rm <alias> <cmd>    # remove a command
     up --version             # display the version number and exit
     up --help                # display this text and exit"
     }
@@ -83,6 +90,10 @@ __up() {
         --rm|-rm)
             shift
             rm_command $1
+            return 0;;
+
+        --all|-all)
+            exec_all
             return 0;;
 
         -*)

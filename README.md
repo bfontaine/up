@@ -45,6 +45,7 @@ up --version               # show version and exit
 up --add <alias> <command> # add a new command
 up --rm <alias>            # remove a command
 up --list                  # list available commands
+up --all                   # execute all commands
 ```
 
 ### Example
