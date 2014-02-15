@@ -35,6 +35,13 @@ If `~/bin` is not in your `PATH`, you have to add it:
 echo 'export PATH="$HOME/bin:$PATH"' >> ~/.bashrc
 ```
 
+### Using homebrew
+
+```
+brew tap bfontaine/utils
+brew install up
+```
+
 ## Usage
 
 `up` takes either a set of aliases or one of the following options:
