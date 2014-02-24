@@ -4,16 +4,20 @@
 #
 # Author: Baptiste Fontaine
 # License: MIT
-# Version: 0.1.0
+# Version: 0.1.2
 #
 # URI: github.com/bfontaine/up
 #
 
 __up() {
 
-    local VERSION='0.1.1'
+    local VERSION='0.1.2'
     local COMMANDS="$HOME/.up-commands"
     local CMDS_URL='https://raw.github.com/bfontaine/up/master/initial-commands'
+
+    up_echo() {
+        echo "=up=> $*"
+    }
 
     print_commands() {
         cat $COMMANDS || 0
@@ -32,12 +36,20 @@ __up() {
     }
 
     exec_command() {
-        eval `grep "^$1:" $COMMANDS | cut -d: -f2`
+        local cmd
+        cmd=`grep "^$1:" $COMMANDS | cut -d: -f2`
+        if [ -z "$cmd" ]; then
+            up_echo "cannot find command '$1', skipping."
+        else
+            up_echo "$1"
+            eval $cmd
+        fi
     }
 
     exec_all() {
+        up_echo "executing all commands..."
         while read l; do
-            eval `echo "$l" | cut -d: -f2`
+            exec_command `echo "$l" | cut -d: -f1`
         done < $COMMANDS
     }
 
