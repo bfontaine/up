@@ -58,7 +58,7 @@ __up() {
     up --list                # list all commands
     up --all                 # execute all commands sets
     up --add <alias> <cmd>   # add a command
-    up --rm <alias> <cmd>    # remove a command
+    up --rm <alias>          # remove a command
     up --version             # display the version number and exit
     up --help                # display this text and exit"
     }
