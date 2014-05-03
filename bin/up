@@ -30,9 +30,9 @@ __up() {
     }
 
     rm_command() {
-        # we can't reply on 'sponge', it's not installed by default
-        grep -v "^$1:" $COMMANDS > .uprm
-        mv .uprm $COMMANDS 
+        # we can't rely on 'sponge', it's not installed by default
+        grep -v "^$1:" $COMMANDS >| .uprm
+        mv .uprm $COMMANDS
     }
 
     exec_command() {
@@ -69,7 +69,7 @@ __up() {
     }
 
     init_commands() {
-        curl -s "$CMDS_URL" > $COMMANDS
+        curl -s "$CMDS_URL" >| $COMMANDS
     }
 
     ###
