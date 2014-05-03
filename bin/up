@@ -4,14 +4,13 @@
 #
 # Author: Baptiste Fontaine
 # License: MIT
-# Version: 0.1.2
 #
-# URI: github.com/bfontaine/up
+# URI: https://github.com/bfontaine/up
 #
 
 __up() {
 
-    local VERSION='0.1.2'
+    local VERSION='0.1.3'
     local COMMANDS="$HOME/.up-commands"
     local CMDS_URL='https://raw.github.com/bfontaine/up/master/initial-commands'
 
