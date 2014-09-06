@@ -54,7 +54,7 @@ __up() {
 
     print_usage() {
         echo "Usage:
-    up <alias> [<alias> ...] # execute a set of commands
+    up <alias> [<alias> ...] # execute a commands set
     up --list                # list all commands
     up --all                 # execute all commands sets
     up --add <alias> <cmd>   # add a command
