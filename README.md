@@ -35,6 +35,10 @@ If `~/bin` is not in your `PATH`, you have to add it:
 echo 'export PATH="$HOME/bin:$PATH"' >> ~/.bashrc
 ```
 
+A [Bash autocomplete script][autocomp-bash] is available.
+
+[autocomp-bash]: https://raw.github.com/bfontaine/up/master/utils/up.bash
+
 ### Using homebrew
 
 ```
