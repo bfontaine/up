@@ -34,9 +34,13 @@ __up() {
         mv .uprm $COMMANDS
     }
 
+    _get_command() {
+        grep "^$1:" $COMMANDS | cut -d: -f2
+    }
+
     exec_command() {
         local cmd
-        cmd=`grep "^$1:" $COMMANDS | cut -d: -f2`
+        cmd=`_get_command $1`
         if [ -z "$cmd" ]; then
             up_echo "cannot find command '$1', skipping."
         else
@@ -54,10 +58,13 @@ __up() {
 
     print_usage() {
         echo "Usage:
-    up <alias> [<alias> ...] # execute a commands set
+    up [<alias> ...]         # execute a commands set. if no command is
+                             # provided and the default one is defined, it's
+                             # executed
     up --list                # list all commands
     up --all                 # execute all commands sets
     up --add <alias> <cmd>   # add a command
+    up --default <cmd>       # set the default command
     up --rm <alias>          # remove a command
     up --version             # display the version number and exit
     up --help                # display this text and exit"
@@ -76,8 +83,12 @@ __up() {
     [ ! -f "$COMMANDS" ] && init_commands
 
     if [ $# -eq 0 ]; then
-        print_usage
-        return 0
+        if [ -z "$(_get_command default)" ]; then
+          print_usage
+          return 0
+        else
+          exec_command default
+        fi
     fi
 
     case "$1" in
@@ -92,7 +103,7 @@ __up() {
         --ls|--list|-ls|-list)
             print_commands
             return 0;;
-            
+
         --add|-add)
             shift
             add_command $*
@@ -106,6 +117,12 @@ __up() {
         --all|-all)
             exec_all
             return 0;;
+
+        --default|-default)
+          shift;
+          # --default foo is the same as --add default 'up foo'
+          add_command default "up $*"
+          return 0;;
 
         -*)
             echo "Unrecognized option: $1"
