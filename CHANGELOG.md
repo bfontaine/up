@@ -1,8 +1,12 @@
 # Up Changelog
 
+## 0.1.5
+
+* Default command added
+
 ## 0.1.4
 
-* autocomplete script added
+* Autocomplete script added
 
 ## 0.1.3
 
