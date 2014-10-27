@@ -50,9 +50,13 @@ __up() {
     }
 
     exec_all() {
+        local cmd
         up_echo "executing all commands..."
         while read l; do
-            exec_command `echo "$l" | cut -d: -f1`
+            cmd=`echo "$l" | cut -d: -f1`
+            if [ "$cmd" != "default" ]; then
+              exec_command $cmd
+            fi
         done < $COMMANDS
     }
 
