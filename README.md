@@ -19,7 +19,12 @@ With **up**, it can be reduced to:
 
 ```sh
 up brew gem opam npm
+
+# or just:
+up
 ```
+
+The tool is stable and I’ve used it almost every day for the past 10+ years.
 
 ## Installation
 
